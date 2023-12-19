@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Morse to Text Converter</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <header class="text-center mb-5">
+        <h1>Morse to Text Converter</h1>
+        <h6>by Jeffrey Arukwe</h6>
+    </header>
+
+       <!-- User Instructions -->
+    <div class="text-center mb-4">
+        <p style="color: gray; font-style: italic;">Enter your Morse code  or text in the fields below and select the conversion type. Note: Separate letters by spaces and words by "/" when typing in morse code.</p>
+    </div>
+
+    <form method="post" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.user_input.label(class="form-label") }}
+            {{ form.user_input(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.conversion_type.label(class="form-label") }}
+            {{ form.conversion_type(class="form-select") }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Convert</button>
+    </form>
+
+    {% if result %}
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Result</h5>
+                <p class="card-text font-weight-bold">{{ result }}</p>
+            </div>
+        </div>
+    {% endif %}
+
+     <!-- Footer -->
+    <footer class="mt-5">
+        <div class="text-center">
+            <p>Jeffrey Arukwe &copy; {{ current_year }} | Connect on <a href="https://www.linkedin.com/in/jeffreyarukwe" target="_blank">LinkedIn</a> | Link to <a href="https://shorturl.at/gJORU" target="_blank">CLI version</a></p>
+        </div>
+    </footer>
+
+</div>
+
+{{ bootstrap.load_js() }}
+</body>
+</html>
+
