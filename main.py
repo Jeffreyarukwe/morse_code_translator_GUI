@@ -7,10 +7,10 @@ from datetime import datetime
 
 from encode import encode
 from decode import decode
-from config import secret_key
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = secret_key
+app.config['SECRET_KEY'] = os.environ.get("FLASK_KEY", "dev")
 bootstrap = Bootstrap5(app)
 
 
